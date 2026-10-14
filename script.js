@@ -1,3 +1,34 @@
+// Opening signature: writes for 1.73s, holds, then the portrait flies into the hero frame
+const root = document.documentElement;
+const intro = document.getElementById("intro");
+
+if (root.classList.contains("intro-on")) {
+  const photo = document.getElementById("introPhoto");
+  let leaving = false;
+
+  const finish = () => {
+    if (leaving) return;
+    leaving = true;
+    const from = photo.getBoundingClientRect();
+    const to = document.querySelector(".portrait-frame").getBoundingClientRect();
+    photo.style.transform = `translate(${to.left - from.left}px, ${to.top - from.top}px) scale(${to.width / from.width})`;
+    intro.classList.add("leaving");
+    setTimeout(() => {
+      root.classList.remove("intro-on");
+      intro.remove();
+    }, 650);
+  };
+
+  window.scrollTo(0, 0);
+  setTimeout(finish, 1930);
+  document.getElementById("introSkip").addEventListener("click", finish);
+  window.addEventListener("keydown", (event) => { if (event.key === "Escape") finish(); });
+  window.addEventListener("wheel", finish, { passive: true });
+  window.addEventListener("touchmove", finish, { passive: true });
+} else {
+  intro.remove();
+}
+
 // Mobile menu
 const nav = document.getElementById("nav");
 const menuToggle = document.getElementById("menuToggle");

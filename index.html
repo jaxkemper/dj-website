@@ -9,8 +9,59 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="preload" as="image" href="images/logo.png">
+  <link rel="preload" as="image" href="images/portrait.jpg">
+  <script>
+    // A fresh visit opens with the BAUM signature, like jaxkemper.com. Add ?intro=0 to skip it.
+    if (!location.hash && !/[?&]intro=0/.test(location.search) && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("intro-on", "intro-played");
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      setTimeout(() => document.documentElement.classList.remove("intro-on"), 6000);
+    }
+  </script>
 </head>
 <body>
+
+  <!-- OPENING SIGNATURE (same motion as jaxkemper.com) -->
+  <div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="BAUM opening signature">
+    <div class="intro-backdrop" aria-hidden="true"></div>
+    <div class="intro-stage">
+      <div class="intro-photo" id="introPhoto"><img src="images/portrait.jpg" alt=""></div>
+      <div class="intro-mark">
+        <svg class="intro-sign" viewBox="0 0 260 150" aria-hidden="true" focusable="false">
+          <defs>
+            <filter id="logoCrisp"><feComponentTransfer><feFuncA type="linear" slope="3" intercept="-1"/></feComponentTransfer></filter>
+            <linearGradient id="logoInk" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="245" y2="0">
+              <stop offset="0" stop-color="#dcdccf"/>
+              <stop offset=".55" stop-color="#f3f2ea"/>
+              <stop offset=".75" stop-color="#f3f2ea"/>
+              <stop offset="1" stop-color="#b8bf85"/>
+            </linearGradient>
+            <mask id="logoShape" maskUnits="userSpaceOnUse" x="0" y="0" width="260" height="150">
+              <image href="images/logo.png" width="260" height="150" filter="url(#logoCrisp)"/>
+            </mask>
+            <mask id="logoWrite" maskUnits="userSpaceOnUse" x="0" y="0" width="260" height="150">
+              <path class="intro-stroke" pathLength="1" style="animation-delay:0.18s;animation-duration:0.131s" d="M36 16L36 60L37 112"/>
+              <path class="intro-stroke" pathLength="1" style="animation-delay:0.311s;animation-duration:0.304s" d="M12 47L32 40L44 35L58 32L70 31L76 37L72 46L62 56L50 66L46 71L64 68L80 67L87 72L86 80L77 88L66 94L55 101L44 108L38 112"/>
+              <path class="intro-stroke" pathLength="1" style="animation-delay:0.615s;animation-duration:0.293s" d="M89 104L91 90L95 72L99 50L103 28L105 18L112 40L116 60L120 78L124 98L128 110L132 120L137 130L141 140"/>
+              <path class="intro-stroke" pathLength="1" style="animation-delay:0.908s;animation-duration:0.062s" d="M86 80L104 78L120 75L131 72"/>
+              <path class="intro-stroke" pathLength="1" style="animation-delay:0.97s;animation-duration:0.15s" d="M138 40L139 62L141 80L144 88L149 91L155 88L159 76L161 58L162 40"/>
+              <path class="intro-stroke" pathLength="1" style="animation-delay:1.12s;animation-duration:0.432s" d="M172 120L171 108L174 90L175 70L175 50L172 30L178 38L186 54L193 68L200 80L206 68L213 50L218 30L222 18L224 40L227 80L231 100L237 120"/>
+              <path class="intro-stroke" pathLength="1" style="animation-delay:1.551s;animation-duration:0.179s" d="M70 123L80 116L100 110L124 105L150 100L176 97L197 97"/>
+            </mask>
+            <clipPath id="logoEnd"><rect x="165" y="0" width="95" height="150"/></clipPath>
+          </defs>
+          <g mask="url(#logoWrite)">
+            <rect width="260" height="150" fill="url(#logoInk)" mask="url(#logoShape)"/>
+            <g class="intro-neon" clip-path="url(#logoEnd)"><rect width="260" height="150" fill="url(#logoInk)" mask="url(#logoShape)"/></g>
+          </g>
+          <rect class="intro-fill" width="260" height="150" fill="url(#logoInk)" mask="url(#logoShape)"/>
+        </svg>
+        <p class="intro-label">BAUM / DJ &amp; Producer</p>
+      </div>
+    </div>
+    <button class="intro-skip" id="introSkip" type="button">Skip intro</button>
+  </div>
 
   <!-- NAV -->
   <header class="nav" id="nav">
