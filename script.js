@@ -41,5 +41,6 @@ form.addEventListener("submit", (event) => {
     data.details || "",
   ].join("\n");
 
-  window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const cc = form.dataset.cc ? `cc=${encodeURIComponent(form.dataset.cc)}&` : "";
+  window.location.href = `mailto:${form.dataset.email}?${cc}subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
