@@ -8,7 +8,7 @@ One page site for BAUM (DJ / Producer, San Francisco & Tucson). Plain HTML and C
 
 ## Where it's live
 
-- Base44: https://baum-00cd142c.base44.app (app "BAUM" in Jax's Base44 account)
+- Base44: https://baummusic.base44.app (app "BAUM" in Jax's Base44 account)
 - GitHub Pages: https://jaxkemper.github.io/dj-website/ (updates about a minute after a push to `main`)
 
 ## Publishing a change
