@@ -1,0 +1,8 @@
+{
+  "name": "BAUM",
+  "site": {
+    // Plain HTML/CSS/JS, so "building" just copies the site files into dist
+    "buildCommand": "rm -rf dist && mkdir dist && cp -R index.html styles.css script.js images dist/",
+    "outputDirectory": "./dist"
+  }
+}
